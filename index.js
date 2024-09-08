@@ -97,6 +97,22 @@ class LinkedList {
 
     contains(value) {
         //returns true if the passed in value is in the list and otherwise returns false.
+
+        /**
+         * loop through the list starting from the head up to the tail
+         * each loop. make sure to check if the value is equal to the data of the current node.
+         */
+        let tempNode = this.head;
+
+        while (tempNode) {
+            if (tempNode.data == value) {
+                return true;
+            }
+
+            tempNode = tempNode.next;
+        }
+
+        return false;
     }
 
     find(value) {
@@ -130,6 +146,7 @@ const List = new LinkedList();
 List.append("Dog");
 List.prepend("Cat");
 List.append("Tiger");
-List.toString();
-List.pop();
-List.toString();
+List.contains("Dog");
+// List.toString();
+// List.pop();
+// List.toString();
