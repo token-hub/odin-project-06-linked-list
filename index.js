@@ -87,7 +87,17 @@ class LinkedList {
     }
 
     toString() {
-        // epresents your LinkedList objects as strings, so you can print them out and preview them in the console. The format should be: ( value ) -> ( value ) -> ( value ) -> null
+        // represents your LinkedList objects as strings, so you can print them out and preview them in the console. The format should be: ( value ) -> ( value ) -> ( value ) -> null
+        let string = "";
+        let tempNode = this.head;
+
+        while (tempNode) {
+            string += `( ${tempNode.data} ) -> `;
+            tempNode = tempNode.next;
+        }
+        string += "( null )";
+        console.log(string);
+        return string;
     }
 
     insertAt(value, index) {
@@ -103,3 +113,4 @@ const List = new LinkedList();
 List.append("Dog");
 // List.prepend("Cat");
 List.append("Tiger");
+List.toString();
