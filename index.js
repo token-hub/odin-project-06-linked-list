@@ -158,7 +158,54 @@ class LinkedList {
     }
 
     insertAt(value, index) {
+        if (!value || index < -1) return;
+
         // that inserts a new node with the provided value at the given index.
+        /**
+         *  if the index is < the size - 1
+         *      the node before the targetNode will be need to update the .next = newNode
+         *      then the newNode.next will be the node at the current index
+         *      update the size
+         *
+         *  if the index provide is > than the size - 1. just use the append.
+         *  if the index provide = 0 then just use the prepend()
+         */
+
+        if (index == 0) {
+            this.prepend(value);
+            return;
+        }
+
+        if (index > this.size) {
+            this.append(value);
+            return;
+        }
+
+        if (index <= this.size) {
+            const newNode = new Node(value);
+            /**
+             * the node before the targetNode will be need to update the .next = newNode
+             *      then the newNode.next will be the node at the current index
+             *      update the size
+             */
+            let nodeBeforeTarget;
+            let tempNode = this.head;
+            let i = 1;
+
+            while (i < index) {
+                if (i == index - 1) {
+                    nodeBeforeTarget = tempNode;
+                }
+
+                tempNode = tempNode.next;
+                i++;
+            }
+
+            // at the end of the loop. the tempNode will be equal to the target node
+            nodeBeforeTarget.next = newNode;
+            newNode.next = tempNode;
+            this.size++;
+        }
     }
 
     removeAt(index) {
@@ -170,10 +217,11 @@ const List = new LinkedList();
 List.append("Dog");
 List.prepend("Cat");
 List.append("Tiger");
+List.insertAt("Lion", 0);
+List.insertAt("Elephant", List.size);
+List.toString();
+// List.insertAt("Bird", List.size - 1);
 // List.contains("Dog");
-console.log(List.find("Dogd"));
-console.log(List.find("Cat"));
-console.log(List.find("Tiger"));
 // List.toString();
 // List.pop();
 // List.toString();
