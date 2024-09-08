@@ -25,7 +25,7 @@ class LinkedList {
             this.head = newNode;
             this.tail = newNode;
         } else {
-            const currentTail = this.at(this.size - 1);
+            const currentTail = this.at(this.size);
             currentTail.next = newNode;
             this.tail = newNode;
         }
@@ -60,11 +60,13 @@ class LinkedList {
     }
 
     at(index) {
-        if (index > -1) {
+        if (index > 0) {
+            if (index == 1) return this.head;
+
             let i = 1;
             let targetNode = this.head;
 
-            while (i <= index) {
+            while (i < index) {
                 targetNode = targetNode.next;
                 i++;
             }
@@ -80,7 +82,7 @@ class LinkedList {
         if (this.size < 1) return;
 
         // node before the tail
-        const newTail = this.at(this.size - 2);
+        const newTail = this.at(this.size - 1);
         newTail.next = null;
         this.tail = newTail;
         this.size--;
@@ -182,7 +184,7 @@ class LinkedList {
         }
 
         if (index <= this.size) {
-            const newNode = new Node(value);
+            const newNode = new Node();
             /**
              * the node before the targetNode will be need to update the .next = newNode
              *      then the newNode.next will be the node at the current index
@@ -217,9 +219,12 @@ const List = new LinkedList();
 List.append("Dog");
 List.prepend("Cat");
 List.append("Tiger");
-List.insertAt("Lion", 0);
-List.insertAt("Elephant", List.size);
 List.toString();
+List.pop();
+List.toString();
+// List.insertAt("Lion", 0);
+// List.insertAt("Elephant", List.size);
+// List.toString();
 // List.insertAt("Bird", List.size - 1);
 // List.contains("Dog");
 // List.toString();
