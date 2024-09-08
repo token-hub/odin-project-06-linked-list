@@ -211,7 +211,57 @@ class LinkedList {
     }
 
     removeAt(index) {
+        if (index < 1 || index > this.size) return;
         // that removes the node at the given index.
+
+        if (index == 1) {
+            const newHead = this.head.next;
+            this.head.next = null;
+            this.head = newHead;
+            this.size--;
+
+            return;
+        }
+
+        let i = 1;
+        let tempNode = this.head;
+        let nodeBeforeTarget;
+        while (i < index) {
+            if (i == index - 1) {
+                nodeBeforeTarget = tempNode;
+            }
+            tempNode = tempNode.next;
+            i++;
+        }
+        // after the loop the tempNode is equal to the node to delete
+
+        if (index == this.size) {
+            nodeBeforeTarget.next = null;
+        } else {
+            const nodeAfterTarger = tempNode.next;
+            nodeBeforeTarget.next = nodeAfterTarger;
+            tempNode.next = null;
+        }
+
+        this.size--;
+        /**
+         * if the index is the last index
+         *      loop the list from the head until the node before the tail
+         *      set the .next of that node to null
+         *      descrease the size
+         *
+         * if the index == 1
+         *      get the next node using head.next = newHead
+         *      set the head.next to null
+         *      set as the this.head = newHead
+         *
+         *  else
+         *      get the node before the target = nodeBeforeTarget
+         *      get the node after the target = nodeAfterTarget
+         *      set nodeBeforeTarget.next = nodeAfterTarget
+         *      set target.next = null
+         *
+         */
     }
 }
 
@@ -219,8 +269,14 @@ const List = new LinkedList();
 List.append("Dog");
 List.prepend("Cat");
 List.append("Tiger");
+List.append("Elephant");
+List.append("Bird");
 List.toString();
-List.pop();
+List.removeAt(List.size);
+List.toString();
+List.removeAt(1);
+List.toString();
+List.removeAt(2);
 List.toString();
 // List.insertAt("Lion", 0);
 // List.insertAt("Elephant", List.size);
