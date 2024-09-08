@@ -76,6 +76,23 @@ class LinkedList {
 
     pop() {
         //removes the last element from the list;
+
+        if (this.size < 1) return;
+
+        // node before the tail
+        const newTail = this.at(this.size - 2);
+        newTail.next = null;
+        this.tail = newTail;
+        this.size--;
+        /**
+         * if the size is < 1
+         *      then do nothing
+         * else
+         *      traverse from the head to the node before the tail.
+         *      set the currentNode.next to null
+         *      set the current node as the new tail.
+         *      and decrease the size
+         */
     }
 
     contains(value) {
@@ -111,6 +128,8 @@ class LinkedList {
 
 const List = new LinkedList();
 List.append("Dog");
-// List.prepend("Cat");
+List.prepend("Cat");
 List.append("Tiger");
+List.toString();
+List.pop();
 List.toString();
