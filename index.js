@@ -25,6 +25,8 @@ class LinkedList {
             this.head = newNode;
             this.tail = newNode;
         } else {
+            const currentTail = this.at(this.size - 1);
+            currentTail.next = newNode;
             this.tail = newNode;
         }
 
@@ -58,7 +60,18 @@ class LinkedList {
     }
 
     at(index) {
-        // returns the node at the given index
+        if (index > -1) {
+            let i = 1;
+            let targetNode = this.head;
+
+            while (i <= index) {
+                targetNode = targetNode.next;
+                i++;
+            }
+
+            return targetNode;
+        }
+        return null;
     }
 
     pop() {
@@ -88,4 +101,5 @@ class LinkedList {
 
 const List = new LinkedList();
 List.append("Dog");
-List.prepend("Cat");
+// List.prepend("Cat");
+List.append("Tiger");
