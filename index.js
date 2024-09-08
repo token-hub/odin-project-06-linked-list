@@ -32,8 +32,29 @@ class LinkedList {
         // else just update the tail to the current node and increment the size.
     }
 
-    prepend() {
+    prepend(value) {
         // adds a new node containing value to the start of the list
+        if (!value) return;
+        const newNode = new Node(value);
+
+        if (this.size < 1) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            const currentHead = this.head;
+            this.head = newNode;
+            this.head.next = currentHead;
+        }
+
+        // if the size of the list is < 1
+        //      it means that the value to be added will be the head of the list. as well as the tail.
+        //      increment the size
+        // else
+        //      it means the value will be replace the current head as the new head
+        //      then the newHead.next will be the current.head
+        //      increment the size.
+
+        this.size++;
     }
 
     at(index) {
@@ -67,3 +88,4 @@ class LinkedList {
 
 const List = new LinkedList();
 List.append("Dog");
+List.prepend("Cat");
