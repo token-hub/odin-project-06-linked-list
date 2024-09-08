@@ -45,6 +45,7 @@ class LinkedList {
     at(index) {
         if (index > 0) {
             if (index == 1) return this.head;
+            if (index > this.size) return null;
             let i = 1;
             let targetNode = this.head;
             while (i < index) {
