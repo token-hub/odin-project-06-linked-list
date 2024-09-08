@@ -96,6 +96,7 @@ class LinkedList {
     }
 
     contains(value) {
+        if (!value) return false;
         //returns true if the passed in value is in the list and otherwise returns false.
 
         /**
@@ -116,7 +117,30 @@ class LinkedList {
     }
 
     find(value) {
-        // returns the index of the node containing value, or null if not found.
+        // returns the index of the node containing value, or null if not found.'
+        /**
+         * loop through the list starting from the head
+         */
+
+        if (!value) return null;
+
+        /**
+         * loop through the list starting from the head up to the tail
+         * each loop. make sure to check if the value is equal to the data of the current node.
+         */
+        let tempNode = this.head;
+        let counter = 0;
+
+        while (tempNode) {
+            if (tempNode.data == value) {
+                return counter;
+            }
+
+            tempNode = tempNode.next;
+            counter++;
+        }
+
+        return null;
     }
 
     toString() {
@@ -146,7 +170,10 @@ const List = new LinkedList();
 List.append("Dog");
 List.prepend("Cat");
 List.append("Tiger");
-List.contains("Dog");
+// List.contains("Dog");
+console.log(List.find("Dogd"));
+console.log(List.find("Cat"));
+console.log(List.find("Tiger"));
 // List.toString();
 // List.pop();
 // List.toString();
