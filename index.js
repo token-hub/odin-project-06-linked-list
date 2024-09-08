@@ -103,7 +103,7 @@ class LinkedList {
     }
 
     insertAt(value, index) {
-        if (!value || index < -1) return;
+        if (!value || index < 1) return;
 
         if (index == 0) {
             this.prepend(value);
